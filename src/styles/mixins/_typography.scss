@@ -1,0 +1,27 @@
+// Overwrites vuetify text styles
+@mixin text-styles ($class) {
+  $text_types: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle-1', 'subtitle-2', 'body-1', 'body-2', 'button', 'caption', 'overline';
+  $breakpoints: 'sm', 'md', 'lg', 'xl';
+
+  #{$class} {
+    @content;
+  }
+
+  .v-application {
+    @each $type in $text_types {
+      .text-#{$type} {
+        &#{$class} {
+          @content;
+        }
+      }
+
+      @each $breakpoint in $breakpoints {
+        .text-#{$breakpoint}-#{$type} {
+          &#{$class} {
+            @content;
+          }
+        }
+      }
+    }
+  }
+}
